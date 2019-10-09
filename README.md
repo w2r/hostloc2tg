@@ -6,7 +6,7 @@
 
 ###### 使用说明：
 
-本脚本为python3脚本，需依赖环境requests，lxml等库，第34行bot api需要改为自己的,机器人每30秒更新一次
+本脚本为python3脚本，需依赖环境requests，lxml等库，第34行bot api需要改为自己的, 机器人每30秒更新一次
 
 ###### ht.sh文件说明：
 
