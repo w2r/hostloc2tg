@@ -15,7 +15,7 @@
 使用方法：linux添加定时任务，ht.sh存放在root目录下
 
 ~~~
-* */1 * * * /root/ht.sh
+*/30 * * * * /root/ht.sh
 ~~~
 
 
