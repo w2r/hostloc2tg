@@ -12,7 +12,7 @@
 
 由于hostloc有时开启防御模式，导致部分国外ip无法访问hostloc，getupdate错误导致掉线，后台运行一个自动重新连接脚本
 
-使用方法：linux添加定时任务，ht.sh存放在root目录下
+使用方法：linux添加定时任务，ht.sh存放在root目录下，注意，ht脚本里的里需要修改为你的hostloc2tg.py的路径
 
 ~~~
 */30 * * * * /root/ht.sh
