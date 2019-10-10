@@ -31,7 +31,7 @@ hostloc_list = {"hello"}
 cookiestr = getcookies()
 try:
     while True:
-        post_url = 'https://api.telegram.org/bot854093881:AAE47iYKw0NSiEIg2_Lg65aNPbt78nsAgb0/sendMessage?chat_id=-341449109&text='
+        post_url = 'https://api.telegram.org/bot854093881:AAE47iYKw0NSiEIg**************/sendMessage?chat_id=*********&text='
         url = 'https://www.hostloc.com/forum.php?mod=forumdisplay&fid=45&filter=author&orderby=dateline'
         headers = {
             'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.76 Mobile Safari/537.36'}
