@@ -6,11 +6,15 @@
 
 目前已开通了推送频道，可自行点击查看推送效果：https://t.me/hostloc2tg
 
+##### 更新说明
+
+2020.07.20 网站加了js验证，针对js验证进行更新，采取抓取手机版的方法绕过js验证
+
 ###### 使用说明：
 
-本脚本为python3脚本，需依赖环境requests，lxml，torequests等库，第59行bot api需要改为自己bot api，115行需要修改推送id, 机器人每15秒更新一次
+本脚本为python3脚本，需依赖环境requests，lxml，torequests等库，第74行bot api需要改为自己bot api，118行需要修改推送id, 机器人每15秒更新一次
 
-**需要注册tg机器人，若要推送到频道，请将机器人添加到频道，并给予权限**
+**需要注册tg机器人，若要推送到频道，请将机器人添加到频道，并给予管理员权限**
 
 ###### ht.sh文件说明：
 
@@ -36,6 +40,8 @@ else
 fi
 ~~~
 
+效果图：
 
+![](E:\OneDrive - mails.jlu.edu.cn\markdown\图片存放位置\NNCgxS.jpg)
 
 
