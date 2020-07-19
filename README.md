@@ -42,6 +42,6 @@ fi
 
 效果图：
 
-![](E:\OneDrive - mails.jlu.edu.cn\markdown\图片存放位置\NNCgxS.jpg)
+![](https://s1.ax1x.com/2020/07/20/UfQihF.png)
 
 
