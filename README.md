@@ -12,7 +12,7 @@
 
 ###### 使用说明：
 
-本脚本为python3脚本，需依赖环境requests，lxml，torequests等库，第74行bot api需要改为自己bot api，118行需要修改推送id, 机器人每15秒更新一次
+本脚本为python3脚本，需依赖环境requests，lxml，torequests，js2py等库，第74行bot api需要改为自己bot api，118行需要修改推送id, 机器人每15秒更新一次
 
 **需要注册tg机器人，若要推送到频道，请将机器人添加到频道，并给予管理员权限**
 
