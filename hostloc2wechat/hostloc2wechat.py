@@ -123,7 +123,7 @@ while True:
             print("2")
             time.sleep(1800)
 
-    except KeyError:
+    except Exception:
         print("网络错误，请稍后重试")
         time.sleep(30)
 
