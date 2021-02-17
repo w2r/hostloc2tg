@@ -89,5 +89,5 @@ nohup python3 hostloc2wechat.py &
 
 #### 特殊说明：
 
-​	论坛有时会开启防御模式，强制要求js验证，此时脚本不能爬取网站内容，需要使用 selenium（比较麻烦，需要依赖浏览器），后面再更新使用selenium教程
+  已经更新api版本，操作步骤同上
 
