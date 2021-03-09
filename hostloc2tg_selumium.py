@@ -2,12 +2,9 @@
 # 自行百度安装chrome和chromedriver
 # 修改第89行， 修改自己的bot api token
 # 修改第140行， 修改自己的推送id
-# 修改第179行， 修改自己的Chromedriver路径
-# 修改第190行， 修改自己的Chromedriver路径
-#
-#
-#
-#
+# 修改第176行， 修改自己的Chromedriver路径
+# 修改第187行， 修改自己的Chromedriver路径
+
 
 import requests
 from urllib import parse
