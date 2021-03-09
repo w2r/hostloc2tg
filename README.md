@@ -15,7 +15,7 @@
 ###### 使用说明（建议使用api版本）：
 
 ~~本脚本为python3脚本，需依赖环境requests，lxml，torequests，js2py等库，第74行bot api需要改为自己bot api，118行需要修改推送id, 机器人每15秒更新一次~~ 当论坛开启js验证时，此脚本无法运行
-，提供一个selumium脚本，需要自己在vps上安装chrome和chromedriver（详情自己百度）
+，提供一个selumium脚本，需要自己在vps上安装chrome和chromedriver（自己百度安装，暂不提供教程），**推荐使用API版本**
 
 **需要注册tg机器人，若要推送到频道，请将机器人添加到频道，并给予管理员权限**
 
