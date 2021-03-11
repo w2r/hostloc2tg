@@ -6,9 +6,15 @@
 
 把hostloc最新帖子推送到企业微信(可以通过微信插件在微信接收）
 
+**请使用api版本代码**
+
+**请使用api版本代码**
+
+**请使用api版本代码**
+
 20210212更新：已更新了hostloc新帖api，解决脚本因为论坛开启js验证而失效的问题，api地址：www.cherbim.ml 
 
-使用方法：把hostloc2wechatapi.py上传到服务器，修改wx_url(你自己反代的cf worker地址），然后 nohup python3 hostloc2wechat.py &
+使用方法：把hostloc2wechatapi.py上传到服务器，修改wx_url(你自己反代的cf worker地址），然后 nohup python3 hostloc2wechatapi.py &
 
 
 #### 简单介绍：
