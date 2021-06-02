@@ -1,14 +1,5 @@
 # encoding=utf-8
-"""
-@Author  :   cherbim
-@License :   清羽 (C) Copyright 2013-2019
-@Contact :   qyu0615@gmail.com
-@Software:   PyCharm
-@Project ：  new_project_1
-@File    :   1.py
-@Time    :   2021/5/6 12:03
-@User    ：   cherbim
-"""
+
 import requests
 import time
 from urllib import parse
