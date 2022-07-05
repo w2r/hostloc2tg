@@ -3,34 +3,22 @@
 import requests
 import time
 from urllib import parse
+import telegram
+from telegram import InputMediaPhoto
+
+# CHANNEL_ID为简洁模式，CHANNEL_ID_2为完整推送模式
+TOKEN = ""
+CHANNEL_ID = ""
+CHANNEL_ID_2 = ""
+bot = telegram.Bot(token=TOKEN)
 
 
-def post_tg(url, count):
-    try:
-        r = requests.get(url)
-        if '"ok":true,' in r.text:
-            print('发送成功！')
-            pass
-        else:
-            count = count + 1
-            if count > 5:
-                pass
-            else:
-                time.sleep(3)
-                print("发送失败，正在重试")
-                post_tg(url, count)
-    except Exception:
-        time.sleep(3)
-        print("发送失败，正在重试")
-        post_tg(url, count)
-
-
-hostloc_list = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", ]
-hostloc_title = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", ]
+hostloc_list = ["1", "2", "3", "4", "5", "6"]
+hostloc_title = ["1", "2", "3", "4", "5", "6"]
 url_1 = "https://www.hostloc.com/"
 while True:
     try:
-        with requests.get('https://hostloc.cherbim.ml/', stream=True, timeout=5) as r:
+        with requests.get('https://hostloc.cherbim.ml/', stream=True) as r:
             print(time.strftime("%m-%d %H:%M:%S", time.localtime()))
             for i in r.json()["new_data"][0][15:]:
                 if i['主题ID'] in hostloc_list or i['主题'] in hostloc_title:
@@ -40,23 +28,73 @@ while True:
                     hostloc_list.append(i['主题ID'])
                     hostloc_title = hostloc_title[1::]
                     hostloc_title.append(i['主题'])
-                    a = "https://www.hostloc.com/thread-{0}-1-1.html".format(i['主题ID'])
+                    a = "https://hostloc.com/thread-{0}-1-1.html".format(i['主题ID'])
                     time_1 = time.strftime("%Y-%m-%d  %H:%M:%S", time.localtime())
-                    if "论坛bug，此贴内容无法查看~" not in i['主题内容'][0:100]:
-                        a = a
-                    else:
+                    # 发送内容
+                    text_content = ''
+                    img_url = []
+                    if "论坛bug，此贴内容无法查看~" == i['主题内容']:
                         a = f"<s>{a}</s>"
-                    text = '主        题：' + "<b>{}</b>".format(i['主题'].replace("&", "%26").replace("<", "%26lt%3b").replace(">", "%26gt%3b").replace("#", " ")) + '\n' + '发  布  者：' + '''<a href="{0}">{1}</a>'''.format(i['发布者链接'], i['发布者']) + '\n' + '时        间：' + time_1 + '\n' + '内容预览：' + '''<b>{0}</b>'''.format(i['主题内容'][0:100].replace("&", "%26").replace("<", "%26lt%3b").replace(">", "%26gt%3b").replace("#", " ")) + "\n" + "直达链接： " + a
-                    print(text)
-                    # 修改为你自己的bot api token和chat_id(可以是用户也可以是频道）
-                    chat_id = "5*****1213"
-                    bot_api_token = "1384839096:***************AksT60noQ"
-                    tg_url = f"https://api.telegram.org/bot{bot_api_token}/sendMessage?parse_mode=HTML&chat_id=" + chat_id + "&text=" + text
-                    b = 0
-                    post_tg(tg_url, b)
-            time.sleep(2)
+                        text_content = i['主题内容']
+                    elif "获取失败，请手动登陆查看！" == i['主题内容']:
+                        a = a
+                        text_content = i['主题内容']
+                    elif type(i['主题内容']) == str:
+                        text_content = i['主题内容']
+                    else:
+                        # 分辨图片和文字内容
+                        if i['主题内容']:
+                            for i1 in i['主题内容']:
+                                if "trueimg" in i1:
+                                    # 莫名其妙的图片
+                                    if "/public/images/patch.gif" in i1 or "static/image/smiley/" in i1:
+                                        pass
+                                    else:
+                                        img_url.append(i1.replace("trueimg", ''))
+                                else:
+                                    if i1 == '\r\n':
+                                        pass
+                                    else:
+                                        text_content = text_content + i1 + '\r\n'
+                        else:
+                            text_content = "获取失败，请手动登陆查看！"
+                        text_content = text_content[:-2]
+                    # 判断是否含有图片
+                    if img_url:
+                        # 判断匿名贴
+                        if i['发布者'] == "匿名":
+                            auth = '''<a>{}</a>'''.format(i['发布者'])
+                        else:
+                            auth = '''<a href="{0}">{1}</a>'''.format(i['发布者链接'], i['发布者'])
+                        text_tg = '主        题：' + "<b>{}</b>".format(i['主题'].replace("&", "%26").replace("<", "%26lt%3b").replace(">", "%26gt%3b").replace("#", " ")) + '\n' + '发  布  者：' + auth + '\n' + '时        间：' + time_1 + '\n' + '内容预览：' + '''<b>{0}</b>'''.format(text_content[0:800].replace("&", "%26").replace("<", "%26lt%3b").replace(">", "%26gt%3b").replace("#", " ")) + "\n" + "直达链接： " + a
+                        text_short = '主        题：' + "<b>{}</b>".format(i['主题'].replace("&", "%26").replace("<", "%26lt%3b").replace(">", "%26gt%3b").replace("#", " ")) + '\n' + '发  布  者：' + auth + '\n' + '时        间：' + time_1 + '\n' + '内容预览：' + '''<b>{0}</b>'''.format(text_content[0:100].replace("&", "%26").replace("<", "%26lt%3b").replace(">", "%26gt%3b").replace("#", " ")) + "\n" + "直达链接： " + a
+                        media_group = []
+                        print(img_url)
+                        for i2 in range(len(img_url)):
+                            if i2 == 0:
+                                media_group.append(InputMediaPhoto(img_url[i2], caption=text_tg, parse_mode=telegram.ParseMode.HTML))
+                            else:
+                                media_group.append(InputMediaPhoto(img_url[i2]))
+                        print(text_content)
+                        try:
+                            bot.send_media_group(chat_id=CHANNEL_ID, media=media_group)
+                            # 推送简洁内容
+                            bot.send_message(chat_id=CHANNEL_ID_2, text=text_short, disable_web_page_preview=True, parse_mode=telegram.ParseMode.HTML)
+                        except Exception:
+                            bot.send_message(chat_id=CHANNEL_ID, text=text_tg, disable_web_page_preview=True, parse_mode=telegram.ParseMode.HTML)
+                            bot.send_message(chat_id=CHANNEL_ID_2, text=text_short, disable_web_page_preview=True, parse_mode=telegram.ParseMode.HTML)
+
+                    else:
+                        if i['发布者'] == "匿名":
+                            auth = '''<a>{}</a>'''.format(i['发布者'])
+                        else:
+                            auth = '''<a href="{0}">{1}</a>'''.format(i['发布者链接'], i['发布者'])
+                        text_tg = '主        题：' + "<b>{}</b>".format(i['主题'].replace("&", "%26").replace("<", "%26lt%3b").replace(">", "%26gt%3b").replace("#", " ")) + '\n' + '发  布  者：' + auth + '\n' + '时        间：' + time_1 + '\n' + '内容预览：' + '''<b>{0}</b>'''.format(text_content[0:800].replace("&", "%26").replace("<", "%26lt%3b").replace(">", "%26gt%3b").replace("#", " ")) + "\n" + "直达链接： " + a
+                        text_short = '主        题：' + "<b>{}</b>".format(i['主题'].replace("&", "%26").replace("<", "%26lt%3b").replace(">", "%26gt%3b").replace("#", " ")) + '\n' + '发  布  者：' + auth + '\n' + '时        间：' + time_1 + '\n' + '内容预览：' + '''<b>{0}</b>'''.format(text_content[0:100].replace("&", "%26").replace("<", "%26lt%3b").replace(">", "%26gt%3b").replace("#", " ")) + "\n" + "直达链接： " + a
+                        # 推送全部内容
+                        bot.send_message(chat_id=CHANNEL_ID, text=text_tg, disable_web_page_preview=True, parse_mode=telegram.ParseMode.HTML)
+                        bot.send_message(chat_id=CHANNEL_ID_2, text=text_short, disable_web_page_preview=True, parse_mode=telegram.ParseMode.HTML)
+
     except Exception:
         print("网络错误，请稍后重试")
-        time.sleep(5)
-
-
+    time.sleep(5)
