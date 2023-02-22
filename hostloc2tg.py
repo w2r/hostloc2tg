@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 # 第108行修改为自己的想推送的ID
 # 第60行修改为自己的bot api token
-# 注意此脚本当论坛开启js验证时无法正常运行
+# 此脚本当论坛开启js验证时无法正常运行
 # 推荐使用api版
 import requests
 from urllib import parse
