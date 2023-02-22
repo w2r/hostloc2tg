@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-# 自行百度安装chrome和chromedriver
+# 自行百安装chrome和chromedriver
 # 修改第89行， 修改自己的bot api token
 # 修改第140行， 修改自己的推送id
 # 修改第176行， 修改自己的Chromedriver路径
