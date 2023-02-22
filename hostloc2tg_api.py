@@ -6,7 +6,7 @@ from urllib import parse
 import telegram
 from telegram import InputMediaPhoto
 
-# CHANNEL_ID为简洁模式，CHANNEL_ID_2为完整推送模式
+# CHANNEL_ID为简洁模式，CHANNEL_ID_2为完整推送
 TOKEN = ""
 CHANNEL_ID = ""
 CHANNEL_ID_2 = ""
