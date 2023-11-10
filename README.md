@@ -23,7 +23,7 @@
 
 ###### api版本使用方法
 
-安装依赖库 pip3 install requests， 然后修改你自己机器人的bot api token和chat id（代码65 66行），然后后台运行
+安装依赖库requests和python-telegram-bot==13.14(暂不支持20版本）， 然后修改你自己机器人的bot api token和chat id，然后后台运行
 
 nohup python3 -u hostloc2tg_api.py >> hostloc.txt 2>&1 &
 
