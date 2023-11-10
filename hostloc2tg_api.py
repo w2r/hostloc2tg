@@ -18,7 +18,7 @@ hostloc_title = ["1", "2", "3", "4", "5", "6"]
 url_1 = "https://www.hostloc.com/"
 while True:
     try:
-        with requests.get('https://hostloc.cherbim.ml/', stream=True) as r:
+        with requests.get('https://hostloc.mjj.sale/', stream=True) as r:
             print(time.strftime("%m-%d %H:%M:%S", time.localtime()))
             for i in r.json()["new_data"][0][15:]:
                 if i['主题ID'] in hostloc_list or i['主题'] in hostloc_title:
